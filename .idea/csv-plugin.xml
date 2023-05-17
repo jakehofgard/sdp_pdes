@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/outputs/sedumi_d=10.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
