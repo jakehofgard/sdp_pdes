@@ -1,7 +1,7 @@
 % Set solver
-solvers = ['sedumi', 'mosek', 'scs', 'sdp3', 'sdpnal'];
+solvers = ['sedumi', 'mosek', 'scs', 'sdpt3', 'sdpnal'];
 mset('yalmip', true)
-mset(sdpsettings('solver', 'scs', 'verbose', 1, 'showprogress', 1, 'debug', 1));
+mset(sdpsettings('solver', 'sdpt3', 'verbose', 1, 'showprogress', 1, 'debug', 1));
 
 tic;
 % Parameters
