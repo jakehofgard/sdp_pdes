@@ -1,14 +1,22 @@
 % Set solver
 solvers = ['sedumi', 'mosek', 'scs', 'sdpt3', 'sdpnal'];
 mset('yalmip', true)
-mset(sdpsettings('solver', 'sdpt3', 'verbose', 1, 'showprogress', 1, 'debug', 1));
+
+mset( ...
+    sdpsettings( ...
+    'solver', ...
+    'mosek', ...
+    'verbose', 1, ...
+    'showprogress', 1, ...
+    'debug', 1) ...
+    );
 
 tic;
 % Parameters
 
-d = 2; % Relaxation degree
-n = 4; % Dimension of problem
-lmbda = 10; % Regularization parameter
+d = 3; % Relaxation degree
+n = 3; % Dimension of problem
+lmbda = 1; % Regularization parameter
 
 % Interior occupation measure
 mpol('x', n + 1);
@@ -83,7 +91,7 @@ phi_f = mmon(xb(ft_ind:ft_ind + n), d);
 for i = 2:n
     norm_sq = norm_sq + xb(ft_ind + i)^2;
 end
-M = [M, mom(phi_f * norm_sq * (1 - norm_sq)) == 0];
+% M = [M, mom(phi_f * norm_sq * (1 - norm_sq)) == 0];
 
 P = msdp(K, M);
 
