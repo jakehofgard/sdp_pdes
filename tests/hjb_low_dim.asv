@@ -2,13 +2,18 @@
 solvers = ['sedumi', 'mosek', 'scs', 'sdpt3', 'sdpnal'];
 mset('yalmip', true)
 
-% Set solver settings
+% Set SCS solver settings
 
+% Primal scale factor is 1e-6 (better convergence than default 1e-3)
+scaling = 1e-6;
 mset(sdpsettings( ...
     'solver', 'scs', ...
     'verbose', 1, ...
     'showprogress', 1, ...
-    'debug', 1) ...
+    'debug', 1, ...
+    'scs.alpha', 1.31, ... % DR relaxation. Default value is 1.5, recommended between 1-2.
+    'scs.rho_x', scaling, ... % Primal scale factor. Default value is 1e-3.
+    'scs.scale', 0.1) ... % Dual scale factor. Default factor is 0.1. 
 );
 
 % Get total runtime
@@ -58,8 +63,8 @@ phi_3 = mmon(x3, d);
 phi_4 = mmon(x4, d);
 
 
-% Compile support and moment constraints for feasibility problem
-P = msdp(0 <= x(1), x(1) <= 1, 0 <= x(2), x(2) <= 1,...
+% Compile support and moment constraints
+P = msdp(min(mom(x(3)^2 / 2)), 0 <= x(1), x(1) <= 1, 0 <= x(2), x(2) <= 1,...
     0 <= x1(1), x1(1) <= 1, x1(2) == 0, ...
     0 <= x2(1), x2(1) <= 1, x2(2) == 1, ...
     0 <= x3(2), x3(2) <= 1, x3(1) == 0, ...
@@ -75,9 +80,14 @@ P = msdp(0 <= x(1), x(1) <= 1, 0 <= x(2), x(2) <= 1,...
         + mom((diff(phi_int, x(2)) + diff(phi_int, x(n+1)) * z(2)) * z(2)),...
     mom(phi_2 * (1 + x2(1)^2)) == 0);
 
+% Save YALMIP output
+[F, obj, s] = myalmip(P);
+[model, recoverymodel] = export(F, obj, sdpsettings('solver', 'scs'));
+
 % Solve problem using predefined solver
 [status, obj] = msol(P);
+true_obj = obj / scaling;
 
 % Display resclaed objective value
-disp(["Relaxation degree " int2str(d) ": lower bound = " num2str(obj)]);
+disp(["Relaxation degree " int2str(d) ": lower bound = " num2str(true_obj)]);
 toc;
