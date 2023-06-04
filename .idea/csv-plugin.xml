@@ -24,6 +24,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="$USER_HOME$/Downloads/dr_hyperparam_alpha.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/outputs/dr_hyperparam.csv">
           <value>
             <Attribute>
@@ -53,6 +60,13 @@
           </value>
         </entry>
         <entry key="/outputs/hjb_energy_low_dim_d=8.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/outputs/scs_n=4_d=1.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

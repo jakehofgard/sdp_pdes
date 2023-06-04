@@ -22,8 +22,8 @@ for alpha = 1.05:0.05:1.95
     tic;
     % Parameters
     
-    d = 3; % Relaxation degree
-    n = 4; % Dimension of problem
+    d = 1; % Relaxation degree
+    n = 3; % Dimension of problem
     lmbda = 10; % Regularization parameter
     
     % Interior occupation measure
