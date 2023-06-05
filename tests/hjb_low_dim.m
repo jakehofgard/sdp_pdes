@@ -1,4 +1,5 @@
-% Set solver
+% Implementation of feasible control problem for dimension two.
+
 solvers = ['sedumi', 'mosek', 'scs', 'sdpt3', 'sdpnal'];
 mset('yalmip', true)
 

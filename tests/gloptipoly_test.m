@@ -1,3 +1,6 @@
+% Test method of moments on one-dimensional method-of-moments problem,
+% using double-integrator example from Lasserre.
+
 x0 = [1; 1]; 
 u0 = 0;
 d = 20;

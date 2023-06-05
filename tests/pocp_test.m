@@ -1,4 +1,5 @@
-% system variables
+% Test sparse method of moments implementation
+
 mpol x 2; % state vector of size 2
 mpol u; % scalar input
 % state and input matrices

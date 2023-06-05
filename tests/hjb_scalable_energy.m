@@ -1,4 +1,5 @@
-% Set solver
+% Scalable code for higher dimensional version of energy minimization
+% optimal control problem.
 solvers = ['sedumi', 'mosek', 'scs', 'sdpt3', 'sdpnal'];
 mset('yalmip', true)
 

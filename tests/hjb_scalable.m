@@ -1,3 +1,6 @@
+% Scalable implementation of feasible control problem for higher
+% dimensions.
+
 % Set SCS settings
 mset('yalmip', true)
 

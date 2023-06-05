@@ -1,4 +1,5 @@
-% Set solver
+% Implementation of energy minimization optimal control problem in
+% dimension two.
 solvers = ['sedumi', 'mosek', 'scs', 'sdpt3', 'sdpnal'];
 mset('yalmip', true)
 
