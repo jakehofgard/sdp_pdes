@@ -102,7 +102,7 @@ for alpha = 1.05:0.05:1.95
     end
     
     % Add boundary constraints
-    % M = [M, mom(phi_f * norm_sq * (1 - norm_sq)) == 0];
+    M = [M, mom(phi_f * norm_sq * (1 - norm_sq)) == 0];
     
     % Define energy of solution
     J = min(mom(x(n+1)^2 / 2));

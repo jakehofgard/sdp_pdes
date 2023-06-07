@@ -95,7 +95,9 @@ phi_f = mmon(xb(ft_ind:ft_ind + n), d);
 for i = 2:n
     norm_sq = norm_sq + xb(ft_ind + i)^2;
 end
-% M = [M, mom(phi_f * norm_sq * (1 - norm_sq)) == 0];
+
+% Add boundary constraint
+M = [M, mom(phi_f * norm_sq * (1 - norm_sq)) == 0];
 
 P = msdp(K, M);
 
