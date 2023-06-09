@@ -25,7 +25,7 @@ for alpha = 1.05:0.05:1.95
     
     d = 1; % Relaxation degree
     n = 3; % Dimension of problem
-    lmbda = 10; % Regularization parameter
+    lmbda = 10; % Regularization parameter, problem specific
     
     % Interior occupation measure
     mpol('x', n + 1);
