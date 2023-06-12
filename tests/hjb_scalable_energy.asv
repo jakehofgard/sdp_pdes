@@ -8,7 +8,7 @@ mset('yalmip', true)
 % Primal scale factor is 1e-6 (better convergence than default 1e-3)
 scaling = 1e-6;
 trial = [];
-for alpha = 1.4:0.01:1.8
+for alpha = 1.74:0.01:1.8
     mset(sdpsettings( ...
         'solver', 'scs', ...
         'verbose', 1, ...
@@ -16,15 +16,15 @@ for alpha = 1.4:0.01:1.8
         'debug', 1, ...
         'scs.alpha', alpha, ... % DR relaxation. Default value is 1.5, recommended between 1-2.
         'scs.rho_x', scaling, ... % Primal scale factor. Default value is 1e-3.
-        'scs.scale', 5.0, ... % Dual scale factor. YALMIP Default factor is 5.0. 
+        'scs.scale', 3.0, ... % Dual scale factor. YALMIP Default factor is 5.0. 
         'scs.gpu', 1) ...
     );
     
     tic;
     % Parameters
     
-    d = 3; % Relaxation degree
-    n = 4; % Dimension of problem
+    d = 1; % Relaxation degree
+    n = 3; % Dimension of problem
     lmbda = 10; % Regularization parameter, problem specific
     
     % Interior occupation measure
@@ -102,7 +102,7 @@ for alpha = 1.4:0.01:1.8
     end
     
     % Add boundary constraints
-    M = [M, mom(phi_f * norm_sq * (1 - norm_sq)) == 0];
+    % M = [M, mom(phi_f * norm_sq * (1 - norm_sq)) == 0];
     
     % Define energy of solution
     J = min(mom(x(n+1)^2 / 2));
@@ -116,7 +116,7 @@ for alpha = 1.4:0.01:1.8
     true_obj = obj / scaling;
 
     trial = [trial;[alpha, true_obj]];
-    writematrix(trial, "outputs/dr_hyperparam_alpha_n=4_scale=5.csv")
+    writematrix(trial, "outputs/dr_hyperparam_alpha_n=3_scale=8_highrel.csv")
 
     % Display resclaed objective value
     disp(["Relaxation degree " int2str(d) ": lower bound = " num2str(true_obj)]);

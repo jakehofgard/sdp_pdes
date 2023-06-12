@@ -26,7 +26,7 @@ for i = 1:49
     
     % Parameters
     
-    d = 10; % Relaxation degree
+    d = 6; % Relaxation degree
     n = 2; % Dimension of problem
     lmbda = 10; % Regularization parameter
     
